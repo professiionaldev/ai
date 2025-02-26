@@ -7,7 +7,7 @@ env_vars = dotenv_values(".env")
 
 Username = env_vars.get("Username")
 Assistantname = env_vars.get("Assistantname")
-GroqAPIKey = env_vars.get("GroqAPIKey")
+GroqAPIKey = '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'
 
 client = Groq(api_key=GroqAPIKey)
 
@@ -82,7 +82,6 @@ def ChatBot(Query):
 
         with open(r"Data\ChatLog.json", "w") as f:
             dump(messages, f, indent=4)
-            
         return AnswerModifier (Answer=Answer)
     except Exception as e:
         print(f"Error: {e}")
@@ -90,7 +89,8 @@ def ChatBot(Query):
             dump([], f, indent=4)
         return ChatBot (Query)
      
-    if__name="__main__":
-    while True:
+ 
+if __name__ =="__main__": 
+    while True: 
         user_input = input("Enter Your Question: ") # Prompt the user for a question.
         print(ChatBot(user_input)) 
