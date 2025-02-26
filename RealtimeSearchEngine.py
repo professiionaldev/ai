@@ -8,9 +8,9 @@ env_vars = dotenv_values(".env")
 #Retrieve environment variables for the chatbot configuration, 
 Username = env_vars.get("Username") 
 Assistantname = env_vars.get("Assistantname") 
-GROQ_API_KEY= env_vars.get("GroqAPIKey") 
+GroqAPIKey= env_vars.get("GroqAPIKey") 
 #Initialize the Grog client with the provided API key. 
-client =Groq(api_key=GROQ_API_KEY ) 
+client =Groq(api_key=GroqAPIKey ) 
 
 #Define the system instructions for the chatbot. 
 System = f"""Hello, I am {Username}, You are a very accurate and advanced AI chatbot named {Assistantname} which has real-time up-to-date information from the internet.
