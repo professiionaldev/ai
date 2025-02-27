@@ -96,7 +96,7 @@ def SpeechRecognition():
     driver.get(html_file_url)
     driver.find_element(By.ID, "start").click()
 
-    print("🎤 Listening... Speak now!")
+    print("Speak now: ")
 
     while True:
         try:
@@ -105,7 +105,7 @@ def SpeechRecognition():
 
             if text:
                 driver.find_element(By.ID, "end").click()  # Stop recognition
-                print(f"✅ Recognized: {text}")
+                print()
 
                 # Translate if needed
                 if "en" in InputLanguage.lower():
