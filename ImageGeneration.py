@@ -8,9 +8,9 @@ from time import sleep
 #Function to open and display images based on a given prompt 
 def open_images(prompt): 
     folder_path=r"Data" # Folder where the images are stored 
-    prompt = prompt.replace("", "") # Replace spaces in prompt with underscores 
+    prompt = prompt.replace(" ", "_") # Replace spaces in prompt with underscores 
 #Generate the filenames for the images 
-    Files = [f"(prompt){i}.jpg" for i in range(1, 5)] 
+    Files = [f"{prompt}{i}.jpg" for i in range(1, 5)] 
     for jpg_file in Files: 
         image_path = os.path.join(folder_path, jpg_file) 
         try: 
@@ -24,7 +24,7 @@ def open_images(prompt):
 
 # APT detalls for the Hugging Face Stable Diffusion model 
 API_URL ="https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0" 
-headers ={"Authorization": "Bearer (get_key('.env', 'HuggingFaceAPIKey'))"} 
+headers ={"Authorization": f"Bearer {get_key('.env', 'HuggingFaceAPIKey')}"} 
 #Async function to send a query to the Magging Face APT 
 async def query(payload): 
     response = await asyncio.to_thread(requests.post, API_URL, headers=headers, json=payload) 
@@ -42,12 +42,12 @@ async def generate_images(prompt: str):
     image_bytes_list = await asyncio.gather(*tasks) 
 # A Save the generated images to files 
     for i, image_bytes in enumerate(image_bytes_list): 
-     with open(fr"Data\{prompt.replace(' ','_')}{i+1}.jpg", "wb") as f:
+        with open(fr"Data\{prompt.replace(' ','_')}{i+1}.jpg","wb") as f:
             f.write(image_bytes) 
 
 #Wrapper function to generate and open images 
 def GenerateImages(prompt: str): 
-    asyncio.run(generate_images (prompt)) 
+    asyncio.run(generate_images(prompt)) 
     open_images(prompt) 
 # Main loop to monitor for image generation requests 
 while True: 
